@@ -40,23 +40,20 @@ void Notification()
 {
   Serial.print("Move Count: "); 
   Serial.println(moveCount); 
-   
-//   Serial.print("Still Count: "); 
-//   Serial.println(stillCount); 
 
    if (moveCount == waitCount)
    {
      Serial.println("Move Notification"); 
-    //  digitalWrite(ledPin, HIGH);
      stillCount=0;
+     moveCount++;
      Particle.publish("Wash_Status","Moving");
    }
 
    if (stillCount == waitCount)
    {
       Serial.println("Still Notification"); 
-    //   digitalWrite(ledPin, LOW);
       moveCount=0; 
+      stillCount++;
       Particle.publish("Wash_Status","Still");
    }
 }
